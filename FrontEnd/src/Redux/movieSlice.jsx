@@ -3,8 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const movieSlice = createSlice({
     name: "movies",
     initialState: {
-        nowPlayingMovies: null,
-    },                          // we kept first as empty  so the movies comes from Api will be store here
+        nowPlayingMovies: null,// we kept first as empty  so the movies comes from Api will be store here
+        trailerVideo:null,
+    },                          
 
     reducers: {
         // hee we are going to export some action
@@ -12,6 +13,9 @@ const movieSlice = createSlice({
             // inside this reducer function i will update my store
 
             state.nowPlayingMovies = action.payload;
+        },
+        addTrailerVideo: (state,action) =>{
+            state.trailerVideo= action.payload
         }
     }
 })
@@ -19,5 +23,5 @@ const movieSlice = createSlice({
 // down here i am exporting and action from movieSlice varabile and that action is in reducer
 // which is addNowPlayingMovies
 
-export  const {addNowPlayingMovies} = movieSlice.actions;
+export  const {addNowPlayingMovies, addTrailerVideo} = movieSlice.actions;
 export default movieSlice.reducer

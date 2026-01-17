@@ -9,8 +9,8 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-     <div><h1 className='text-red-400'
-     >Hello Stream-GPt</h1>
+     <div>
+     
      <Browse/>
      
      </div>
