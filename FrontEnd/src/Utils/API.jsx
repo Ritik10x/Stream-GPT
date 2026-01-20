@@ -14,6 +14,6 @@ export const BG_URL ="https://assets.nflxext.com/ffe/siteui/vlv3/9c363af5-4750-4
 export const SUPPORTED_LANGUAGES = [
   {identifier:'en', name:'English'},
   {identifier:'hindi', name:'Hindi'},
-  {identifier:'spanish', name:'Spanish'},
+  {identifier:'spainsh', name:'Spainsh'},
 
 ]

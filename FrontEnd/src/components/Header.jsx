@@ -1,15 +1,21 @@
 import React from 'react'
 import logo from '../assets/Images/StreamGpt2.png'
 import { toggleGptSearchView } from '../Redux/GptSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { SUPPORTED_LANGUAGES } from '../Utils/API'
+import { changeLanguage } from '../Redux/configSlice'
 
 const Header = () => {
 const dispatch = useDispatch()
+const showGptSearch = useSelector((store)=>store.gpt.showGptSearch)
 
   const handleGptSearch=()=>{
     // toggle Gpt Search
     dispatch(toggleGptSearchView())
+  }
+
+  const handleLanguageChange =(e)=>{
+   dispatch(changeLanguage(e.target.value))
   }
   return (
     <div className=' flex justify-between   w-full fixed px-8 py-2 bg-black bg-linear-to-b-r from-black z-30 '>
@@ -18,12 +24,14 @@ const dispatch = useDispatch()
     src={logo} alt="logo" />
 
 <div>
-    <select className='bg-white rounded-lg p-2 m-2'> 
+    { showGptSearch && (<select className='bg-white rounded-lg p-2 m-2' onChange={handleLanguageChange} > 
       {SUPPORTED_LANGUAGES.map(lang=><option key={lang.identifier} value={lang.identifier}>{lang.name}</option>)}
-    </select>
-    <button className=' px-2 bg-purple-800 mx-4 rounded-lg text-white'
+    </select >)}
+    <button className='py-2 px-2 bg-purple-800 mx-4 rounded-lg text-white'
     onClick={handleGptSearch}
-    >GPTSearch</button>
+    >
+      {showGptSearch?"HomePage":
+      "GPTSearch"}</button>
     </div>
     </div>
   )

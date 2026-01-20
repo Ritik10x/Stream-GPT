@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import moviesReducer from './movieSlice'
 import gptReducer from './GptSlice'
-
+import configReducer from'./configSlice'
 const appStore = configureStore({
     reducer:{
         // user: useReducer; // this is another Slice
@@ -12,6 +12,7 @@ const appStore = configureStore({
 
         movies: moviesReducer,
         gpt: gptReducer,
+        config:configReducer,
     }
 })
 export default appStore
