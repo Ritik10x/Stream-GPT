@@ -3,7 +3,7 @@ import lang from '../Utils/LanguageConstants'
 import { useDispatch, useSelector } from 'react-redux'
 import {Gemini_Ai_Model} from './Gemini_AI_fun'
 import { API_options } from '../Utils/API'
-import { addGptMovieResult } from '../Redux/GptSlice'
+import { addGptMovieResult,setLoading } from '../Redux/GptSlice'
 
 const GptSearchBar = () => {
 
@@ -27,6 +27,10 @@ const GptSearchBar = () => {
 
   const handleGptSearchClick = async () =>{
     console.log(searchText.current.value) 
+
+   try{
+    dispatch(setLoading(true))
+
     // make an APi call to GPT API and get movie Result
 
     
@@ -50,6 +54,13 @@ console.log(Gemini_Ai_Movie)
     
     console.log(tmdbResults)
     dispatch(addGptMovieResult({movieNames: Gemini_Ai_Movie,movieResults:tmdbResults}))
+   }
+   catch(error){
+    console.error(error)
+    dispatch(setLoading(false))  // ❗ STOP LOADER ON ERROR
+   }
+
+
   }
 
   return (

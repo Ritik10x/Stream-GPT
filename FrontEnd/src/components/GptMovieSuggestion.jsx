@@ -3,11 +3,24 @@ import { useSelector } from 'react-redux'
 import MovieList from "./MovieList"
 
 
+
 const GptMovieSuggestion = () => {
 
-  const {movieResults,movieNames} = useSelector(store=> store.gpt)
+  const {movieResults,movieNames,loading} = useSelector(store=> store.gpt)
   
 console.log(movieResults)
+
+
+
+ if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="animate-spin rounded-full h-24 w-24 border-t-8 border-blue-500"></div>
+      </div>
+    )
+  }
+
+
  
  if (!movieNames || !movieResults) return null
 
